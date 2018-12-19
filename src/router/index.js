@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Currency from '@/components/Currency'
+import search from '@/components/search'
 
 import page1 from '@/components/page1'
 import page2 from '@/components/page2'
-import test from '@/components/test'
+import result from '@/components/result'
 
 Vue.use(Router)
 
@@ -17,12 +17,11 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/currency',
-      name: 'Currency',
-      component: Currency
+      path: '/search',
+      component: search
     },
     {
-      path: '/',
+      path: '/page1',
       component: page1
     },
     {
@@ -30,8 +29,8 @@ export default new Router({
       component: page2
     },
     {
-      path: '/test',
-      component: test
+      path: '/result',
+      component: result
     }
   ]
 })

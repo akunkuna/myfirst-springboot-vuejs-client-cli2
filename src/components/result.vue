@@ -7,7 +7,7 @@
                 </div>
                 <div></div>
                 <div>
-                    <el-button icon="el-icon-search" circle></el-button>
+                    <el-button icon="el-icon-search" @click="buttonClick" circle></el-button>
                     <el-button type="primary" icon="el-icon-edit" circle></el-button>
                     <el-button type="success" icon="el-icon-check" circle></el-button>
                     <el-button type="info" icon="el-icon-message" circle></el-button>
@@ -19,15 +19,15 @@
       <viewer>
       <el-col :span="4" v-for="(o) in 20" :key="o" :offset="0">
         <el-card :body-style="{ padding: '0px' }">
-          <!-- img src="../assets/images/ham01.png" class="image" @click="imgClick" -->
+          <!-- img src="../assets/images/ham02.jpg" class="image" @click="imgClick" -->
           <div>
-                <img src="../assets/images/ham01.png" class="image">
+                <img src="../assets/images/ham02.jpg" class="image">
           </div>
           <div style="padding: 7px;">
-            <span>好吃的汉堡</span>
+            <span>Hambuger</span>
             <div class="bottom clearfix">
               <time class="time">{{ currentDate }}</time>
-              <el-button type="text" class="button" @click="imgClick">操作按钮</el-button>
+              <el-button type="text" class="button" @click="imgClick">操作Button</el-button>
             </div>
           </div>
         </el-card>
@@ -44,14 +44,19 @@ export default {
     }
   },
   methods: {
-    imgClick: function () {
-      alert('クリックされました')
+    buttonClick: function () {
+      this.$router.push({ path: 'search' })
     }
   }
 }
 
 </script>
 
-<style scoped>
+<style>
+
+.image {
+  width: 100%;
+  display: block;
+}
 
 </style>
