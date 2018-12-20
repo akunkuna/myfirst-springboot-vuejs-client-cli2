@@ -42,8 +42,8 @@ export default {
   },
   methods: {
     refresh: async function () {
-      // const res = await axios.get('http://localhost:8080/java')
-      // this.curreneies = res.data.currencies
+      const res = await axios.get('http://localhost:8080/java')
+      this.curreneies = res.data.currencies
       console.info(this.currencies)
     },
     buttonClick: async function () {

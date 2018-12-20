@@ -6,6 +6,7 @@ import search from '@/components/search'
 import page1 from '@/components/page1'
 import page2 from '@/components/page2'
 import result from '@/components/result'
+import video from '@/components/video'
 
 Vue.use(Router)
 
@@ -31,6 +32,10 @@ export default new Router({
     {
       path: '/result',
       component: result
+    },
+    {
+      path: '/video',
+      component: video
     }
   ]
 })
