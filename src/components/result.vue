@@ -24,7 +24,7 @@
           </div>
           <div v-else-if="cell.type == 'video'">
                 <video-player class="vjs-custom-skin"
-                               ref="videoPlayer"
+                               :ref="cell.videoPlayer"
                                :options="cell.playerOptions"
                                :playsinline="true"
                                @play="onPlayerPlay($event)"
@@ -36,7 +36,7 @@
                                @timeupdate="onPlayerTimeupdate($event)"
                                @canplay="onPlayerCanplay($event)"
                                @canplaythrough="onPlayerCanplaythrough($event)"
-                               @ready="playerReadied"
+                               @ready="playerReadied($event, cell.startTime)"
                                @statechanged="playerStateChanged($event)">
                 </video-player>
           </div>
@@ -52,6 +52,8 @@
     </el-row>
 </template>
 <script>
+// import videojs from 'video.js'
+
 export default {
   name: 'Currency',
   data () {
@@ -61,6 +63,8 @@ export default {
         {type: 'image', src: require('../assets/images/ham01.png')},
         {
           type: 'video',
+          videoPlayer: 'videoPlayer01',
+          startTime: 10,
           playerOptions: {
             height: '180',
             autoplay: false,
@@ -69,9 +73,9 @@ export default {
             playbackRates: [0.7, 1.0, 1.5, 2.0],
             sources: [{
               type: 'video/mp4',
-              src: 'http://vjs.zencdn.net/v/oceans.mp4'
+              src: require('../assets/videos/oceans.mp4')
             }],
-            poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg',
+            poster: require('../assets/images/ham01.png'),
             controlBar: {
               timeDivider: false,
               durationDisplay: false,
@@ -84,9 +88,11 @@ export default {
         },
         {
           type: 'video',
+          videoPlayer: 'videoPlayer02',
+          startTime: 20,
           playerOptions: {
             height: '180',
-            autoplay: true,
+            autoplay: false,
             muted: true,
             language: 'en',
             playbackRates: [0.7, 1.0, 1.5, 2.0],
@@ -111,6 +117,8 @@ export default {
         {type: 'image', src: require('../assets/images/ham01.png')},
         {
           type: 'video',
+          videoPlayer: 'videoPlayer03sss',
+          startTime: 30,
           playerOptions: {
             height: '180',
             autoplay: false,
@@ -134,9 +142,11 @@ export default {
         },
         {
           type: 'video',
+          videoPlayer: 'videoPlayer04',
+          startTime: 40,
           playerOptions: {
             height: '180',
-            autoplay: true,
+            autoplay: false,
             muted: true,
             language: 'en',
             playbackRates: [0.7, 1.0, 1.5, 2.0],
@@ -165,9 +175,18 @@ export default {
       this.$router.push({ path: 'search' })
     },
     onPlayerLoadeddata: function () {
-      // this.$router.push({ path: 'search' })
-      console.log('video loaded')
-      console.log(this.playerOptions.sources[0])
+    },
+    playerReadied: function (e, t) {
+      // console.log(e)
+      // console.log(t)
+      // var myPlayer = this.$refs.videoPlayer03sss[0].player
+      var myPlayer = e
+      myPlayer.currentTime(t)
+    },
+    onPlayerPlay: function () {
+      // var myPlayer = this.$refs.videoPlayer01[0].player
+      // console.log(myPlayer)
+      // myPlayer.currentTime(40)
     }
   }
 }
