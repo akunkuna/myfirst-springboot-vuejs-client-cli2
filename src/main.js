@@ -11,10 +11,14 @@ import 'element-ui/lib/theme-chalk/index.css' // 追記
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 
-import VueVideoPlayer from 'vue-video-player'
 // require videojs style
+// import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
 // import 'vue-video-player/src/custom-theme.css'
+// import 'videojs-markers/dist/videojs.markers.css'
+// import 'videojs-markers/dist/videojs-markers.js'
+
+import VueVideoPlayer from 'vue-video-player'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, {locale}) // 追記

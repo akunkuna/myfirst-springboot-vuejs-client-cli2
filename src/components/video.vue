@@ -39,6 +39,7 @@
 // custom skin css
 // import '../src/custom-theme.css'
 import 'vue-video-player/src/custom-theme.css'
+import videojs from 'video.js'
 
 export default {
   data () {
@@ -120,11 +121,23 @@ export default {
     },
     // player is ready
     playerReadied (player) {
-      // seek to 10s
-      console.log('example player 1 readied', player)
-      player.currentTime(10)
-      // console.log('example 01: the player is readied', player)
+      var markerDiv = videojs.dom.createEl('div', {}, {
+        'data-marker-key': 1111,
+        'data-marker-time': 2222,
+        'border-radius': '30%'
+      })
+      // markerDiv.style.left = '90%'
+      markerDiv.style.height = '100%'
+      markerDiv.style.width = '4px'
+      markerDiv.style.marginLeft = '50%'
+      markerDiv.style.backgroundColor = 'red'
+      markerDiv.style.zIndex = 99999999999
+      markerDiv.style.position = 'absolute'
+      var aaaa = player.el().querySelector('.vjs-progress-holder')
+      aaaa.appendChild(markerDiv)
+      console.log(aaaa)
     }
+
   }
 }
 </script>

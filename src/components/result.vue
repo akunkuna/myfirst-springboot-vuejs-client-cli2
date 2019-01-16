@@ -23,7 +23,7 @@
                 <img v-bind:src="cell.src" class="image">
           </div>
           <div v-else-if="cell.type == 'video'">
-                <video-player class="vjs-custom-skin"
+                <video-player class="vjs-custom-skin" id="video-id"
                                :ref="cell.videoPlayer"
                                :options="cell.playerOptions"
                                :playsinline="true"
@@ -52,7 +52,7 @@
     </el-row>
 </template>
 <script>
-// import videojs from 'video.js'
+import videojs from 'video.js'
 
 export default {
   name: 'Currency',
@@ -75,7 +75,7 @@ export default {
               type: 'video/mp4',
               src: require('../assets/videos/oceans.mp4')
             }],
-            poster: require('../assets/images/ham01.png'),
+            // poster: require('../assets/images/ham01.png'),
             controlBar: {
               timeDivider: false,
               durationDisplay: false,
@@ -100,7 +100,7 @@ export default {
               type: 'video/mp4',
               src: 'http://vjs.zencdn.net/v/oceans.mp4'
             }],
-            poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg',
+            // poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg',
             controlBar: {
               timeDivider: false,
               durationDisplay: false,
@@ -129,7 +129,7 @@ export default {
               type: 'video/mp4',
               src: 'http://vjs.zencdn.net/v/oceans.mp4'
             }],
-            poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg',
+            // poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg',
             controlBar: {
               timeDivider: false,
               durationDisplay: false,
@@ -154,7 +154,7 @@ export default {
               type: 'video/mp4',
               src: 'http://vjs.zencdn.net/v/oceans.mp4'
             }],
-            poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg',
+            // poster: 'https://surmon-china.github.io/vue-quill-editor/static/images/surmon-1.jpg',
             controlBar: {
               timeDivider: false,
               durationDisplay: false,
@@ -177,11 +177,37 @@ export default {
     onPlayerLoadeddata: function () {
     },
     playerReadied: function (e, t) {
-      // console.log(e)
-      // console.log(t)
       // var myPlayer = this.$refs.videoPlayer03sss[0].player
       var myPlayer = e
+      // console.log(myPlayer)
       myPlayer.currentTime(t)
+      /* myPlayer.markers({
+        markerStyle: {
+          'width': '8px',
+          'background-color': 'red'
+        },
+        markers: [
+          {time: 1, text: 'a'},
+          {time: 10, text: 'b'}
+        ]
+      }
+      ) */
+      var markerDiv = videojs.dom.createEl('div', {}, {
+        'data-marker-key': 1111,
+        'data-marker-time': 2222,
+        'border-radius': '30%',
+        'z-index': '99998'
+      })
+      // markerDiv.style.left = '10%'
+      markerDiv.style.height = '100%'
+      markerDiv.style.marginLeft = '50%'
+      markerDiv.style.width = '4px'
+      markerDiv.style.backgroundColor = 'red'
+      markerDiv.style.position = 'absolute'
+      markerDiv.style.zIndex = 99999999999
+      var aaaa = myPlayer.el().querySelector('.vjs-progress-holder')
+      aaaa.appendChild(markerDiv)
+      console.log(aaaa)
     },
     onPlayerPlay: function () {
       // var myPlayer = this.$refs.videoPlayer01[0].player
