@@ -49,8 +49,11 @@ export default {
     buttonClick: async function () {
       // const res = await axios.get('http://localhost:8080/java')
       // console.info(res)
-      alert('クリックされました, 入力:[' + this.input10 + ']')
-      this.$router.push({ path: 'result' })
+      // alert('クリックされました, 入力:[' + this.input10 + ']')
+      this.$router.push({
+        path: 'result',
+        query: [{ userId: '123' }, {userId: '345', type: 'video'}]
+      })
     }
   }
 }

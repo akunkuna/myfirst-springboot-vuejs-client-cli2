@@ -41,7 +41,7 @@
                 </video-player>
           </div>
           <div style="padding: 7px;">
-            <span>Hambuger</span>
+            <span>{{params[1]}}</span>
             <div class="bottom clearfix">
               <el-button type="text" class="button" @click="imgClick">操作Button</el-button>
             </div>
@@ -55,12 +55,10 @@
 import videojs from 'video.js'
 
 export default {
-  name: 'Currency',
   data () {
     return {
+      params: this.$route.query,
       gridData: [
-        {type: 'image', src: require('../assets/images/ham02.jpg')},
-        {type: 'image', src: require('../assets/images/ham01.png')},
         {
           type: 'video',
           videoPlayer: 'videoPlayer01',
@@ -111,10 +109,6 @@ export default {
             }
           }
         },
-        {type: 'image', src: require('../assets/images/ham02.jpg')},
-        {type: 'image', src: require('../assets/images/ham01.png')},
-        {type: 'image', src: require('../assets/images/ham02.jpg')},
-        {type: 'image', src: require('../assets/images/ham01.png')},
         {
           type: 'video',
           videoPlayer: 'videoPlayer03sss',
@@ -181,17 +175,7 @@ export default {
       var myPlayer = e
       // console.log(myPlayer)
       myPlayer.currentTime(t)
-      /* myPlayer.markers({
-        markerStyle: {
-          'width': '8px',
-          'background-color': 'red'
-        },
-        markers: [
-          {time: 1, text: 'a'},
-          {time: 10, text: 'b'}
-        ]
-      }
-      ) */
+
       var markerDiv = videojs.dom.createEl('div', {}, {
         'data-marker-key': 1111,
         'data-marker-time': 2222,
@@ -205,9 +189,8 @@ export default {
       markerDiv.style.backgroundColor = 'red'
       markerDiv.style.position = 'absolute'
       markerDiv.style.zIndex = 99999999999
-      var aaaa = myPlayer.el().querySelector('.vjs-progress-holder')
-      aaaa.appendChild(markerDiv)
-      console.log(aaaa)
+      myPlayer.el().querySelector('.vjs-progress-holder').appendChild(markerDiv)
+      // console.log(this.params)
     },
     onPlayerPlay: function () {
       // var myPlayer = this.$refs.videoPlayer01[0].player
