@@ -168,7 +168,11 @@ export default {
     buttonClick: function () {
       this.$router.push({ path: 'search' })
     },
-    onPlayerLoadeddata: function () {
+    onPlayerLoadeddata: function (e) {
+      var myPlayer = e
+      var loadingSpinner = myPlayer.loadingSpinner
+      var a = loadingSpinner.el()
+      a.parentNode.removeChild(a)
     },
     playerReadied: function (e, t) {
       // var myPlayer = this.$refs.videoPlayer03sss[0].player

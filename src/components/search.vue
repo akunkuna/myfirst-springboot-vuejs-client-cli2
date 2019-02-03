@@ -9,6 +9,7 @@
                     <el-input
                       placeholder="Please input"
                       v-model="input10"
+                      @keyup.enter.native="keyPress"
                       clearable
                       class="input-with-button">
                       <el-button type="primary" slot="append" icon="el-icon-search" @click="buttonClick">Search</el-button>
@@ -54,6 +55,12 @@ export default {
         path: 'result',
         query: [{ userId: '123' }, {userId: '345', type: 'video'}]
       })
+    },
+    keyPress: function (e) {
+      console.log(e)
+      if (e.keyCode === 13) {
+        alert('クリックされました:' + e.key)
+      }
     }
   }
 }
